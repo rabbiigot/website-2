@@ -1,0 +1,15 @@
+<% let count = 0; for(var i = 0; i < orders.length; i++) { if(orders[i].schedule) { count++; %>
+<tr>
+    
+    <td><%= count %></td>
+    <td><%= orders[i].firstname %></td>
+    <td><%= orders[i].lastname %></td>
+    <td><%= orders[i].email %></td>
+    <td><%= orders[i].creditnumber %></td>
+    <td><%= orders[i].schedule %></td>
+    <td>
+        <a data-id="<%= [orders[i].firstname, orders[i].lastname , orders[i].email, orders[i].creditnumber, orders[i].schedule, orders[i]._id]%>" class="order-update"><i class="ri-pencil-fill"></i></a>
+        <a data-id="<%= orders[i]._id%>" class="delete"><i class="ri-delete-bin-5-fill"></i></a>
+    </td>
+</tr>
+<%}}%>

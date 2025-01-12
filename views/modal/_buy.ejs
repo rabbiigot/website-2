@@ -1,0 +1,39 @@
+<div class="modal-buy nav-exp">
+    <div class="modal-container">
+        <div class="modal-content">
+            <div class="product-fields">
+                <div class="field-header">
+                CREATE ORDER
+                </div>
+                <form action="/api/addorder" id="add_order" method="POST">
+                    <div class="field-item">
+                        <label for="firstname">First Name</label>
+                        <input type="text" name="firstname" value="" placeholder="John" >
+                    </div>
+                    <div class="field-item">
+                        <label for="lastname">Last Name</label>
+                        <input type="text" name="lastname" value="" placeholder="Doe" >
+                    </div>
+                    <div class="field-item">
+                        <label for="email">Email</label>
+                        <input type="text" name="email" value="" placeholder="john@gmail.com" >
+                    </div>
+                    <div class="field-item">
+                        <label for="creditnumber">Credit Number</label>
+                        <input type="text" name="creditnumber" value="" placeholder="012345678910" >
+                    </div>
+                    <div class="field-item">
+                        <label for="schedule">Schedule Reservation</label>
+                        <input type="date" name="schedule" value="">
+                    </div>
+                    <div class="field-item">
+                        <button type="submit" id="create">Create</button>
+                    </div>
+                </form>
+                <div class="field-item">
+                    <button id="cancel">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
