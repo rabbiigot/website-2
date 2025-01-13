@@ -115,14 +115,15 @@ $(document).ready(function(){
         
 
         $('button#confirm').click(function() {
+            var domain = window.location.origin;
             var request = {
-                "url":`http://localhost:7000/api/deleteorder/${value}`,
+                "url":`${domain}/api/deleteorder/${value}`,
                 "method": "DELETE"
             }
             $.ajax(request)
             .done(function(response){
                 $(document).ready(function(){
-                    window.location.href = "http://localhost:7000/order";
+                    window.location.href = `${domain}/order`;
                 });
             })
         })
@@ -132,13 +133,15 @@ $(document).ready(function(){
         })
 
         $('button#cancel').click(function() {
+            var domain = window.location.origin;
             $(document).ready(function(){
-                window.location.href = "http://localhost:7000/order";
+                window.location.href = `${domain}/order`;
             });
             $('.modal-orderUpdate').css('display','none');
         })
 
         $('#add_order').submit(function(event) {
+            var domain = window.location.origin;
             event.preventDefault();
             var unindexed_array = $(this).serializeArray();
             var data = {};
@@ -148,14 +151,14 @@ $(document).ready(function(){
             })
 
             var request = {
-                "url":`http://localhost:7000/api/updateorder/${data.id}`,
+                "url":`${domain}/api/updateorder/${data.id}`,
                 "method": "PUT",
                 "data":data
             }
 
             $.ajax(request).done(function(response){
                 $(document).ready(function(){
-                    window.location.href = "http://localhost:7000/order";
+                    window.location.href = `${domain}/order`;
                 });
                 $('.modal-orderUpdate').css('display','none');
             })

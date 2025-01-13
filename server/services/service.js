@@ -1,7 +1,12 @@
 const axios = require('axios');
+const dotenv = require('dotenv');
+
+dotenv.config({path: 'config.env'})
+
+const API_URL = process.env.API_URL;
 
 exports.orderpage = (req, res)=>{
-    axios.get('http://localhost:7000/api/allorders')
+    axios.get(`${API_URL}/api/allorders`)
     .then((response) => {
         // console.log(response)
         res.render('order', {orders: response.data})
@@ -12,7 +17,7 @@ exports.orderpage = (req, res)=>{
 }
 
 exports.orderUpdate = (req, res)=>{
-    axios.get('http://localhost:7000/api/updateorder', {params: {id: req.query.id}})
+    axios.get(`${API_URL}/api/updateorder`, {params: {id: req.query.id}})
     .then((response) => {
         res.render('order', {order: response.data});
     })
