@@ -1,10 +1,11 @@
 const Userdb = require('../model/model');
+const axios = require('axios');
 
-exports.create = (req, res)=>{
-    if(!req.body) {
-        res.status(400).send({
+exports.create = async (req, res) => {
+    if (!req.body) {
+        return res.status(400).send({
             message: 'Content cannot be empty'
-        })
+        });
     }
 
     const order = new Userdb({
@@ -13,20 +14,33 @@ exports.create = (req, res)=>{
         email: req.body.email,
         creditnumber: req.body.creditnumber,
         schedule: req.body.schedule
-    })
+    });
 
-    order
-    .save(order)
-    .then(data => {
-        // res.send(data)
+    try {
+        const savedOrder = await order.save();
+
+        // Convert to raw JSON string
+        const rawBody = JSON.stringify(savedOrder);
+
+        // Send to n8n webhook
+        await axios.post(
+            'https://simpleflowai.app.n8n.cloud/webhook-test/ec57c677-ee25-404c-a900-2749925a8ba8',
+            rawBody,
+            {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }
+        );
+
         res.redirect('/order');
-    })
-    .catch(err => {
+
+    } catch (err) {
         res.status(500).send({
             message: err.message || "Internal Server Error"
-        })
-    })
-}
+        });
+    }
+};
 
 exports.find = (req, res) => {
     var id = req.query.id;
