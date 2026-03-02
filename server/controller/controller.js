@@ -19,16 +19,15 @@ exports.create = async (req, res) => {
     try {
         const savedOrder = await order.save();
 
-        // Convert to raw JSON string
         const rawBody = JSON.stringify(savedOrder);
 
-        // Send to n8n webhook
         await axios.post(
             'https://simpleflowai.app.n8n.cloud/webhook-test/ec57c677-ee25-404c-a900-2749925a8ba8',
             rawBody,
             {
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'x-api-key': '8f3c7c9d1a6e4b7f9e2d0c5a3b8f1d4e6c7b9a0d3e5f6a8c1d2e3f4b5a6c7d8'
                 }
             }
         );
